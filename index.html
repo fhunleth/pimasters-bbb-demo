@@ -24,7 +24,7 @@
         socket.emit('setYellow', value);
       }
       socket.on('buttonChanged', function(data) {
-        $('#buttonStatus').val(data == 1 ? 'on' : 'off').slider('refresh');
+        $('#buttonStatus').val(data == 0 ? 'on' : 'off').slider('refresh');
       });
     </script>
 </head>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div data-role="footer" data-position="fixed">
-      <a href="https://github.com/fhunleth/pimasters-bbb-demo">github.com/fhunleth/pimasters-bbb-demo</a>
+      <a href="https://github.com/fhunleth/pimasters-bbb-demo">https://github.com/fhunleth/pimasters-bbb-demo.git</a>
     </div>
   </div>
 </body>
