@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+
+    <title>BeagleBone Black Demo</title>
+
+    <!-- jQuery and jQuery Mobile -->
+    <link rel="stylesheet" href="/jquery/jquery.mobile-1.3.2.min.css"/>
+    <script src="/jquery/jquery-1.10.2.min.js"></script>
+    <script src="/jquery/jquery.mobile-1.3.2.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      var socket = io.connect();
+      function setRed(value){
+        socket.emit('setRed', value);
+      }
+      function setGreen(value){
+        socket.emit('setGreen', value);
+      }
+      function setYellow(value){
+        socket.emit('setYellow', value);
+      }
+      socket.on('buttonChanged', function(data) {
+        $('#buttonStatus').val(data == 1 ? 'on' : 'off').slider('refresh');
+      });
+    </script>
+</head>
+<body>
+  <div data-role="page">
+    <div data-theme="a" data-role="header">
+      <h3>BeagleBone Black Demo</h3>
+    </div>
+    <div data-role="content">
+      <div data-role="fieldcontain">
+        <label for="redled">Red LED</label>
+        <input id="redled" type="range" name="slider" value="0" min="0" max="100"
+	       onChange="setRed(value);">
+      </div>
+
+      <div data-role="fieldcontain">
+        <label for="yellowled">Yellow LED</label>
+        <input id="yellowled" type="range" name="slider" value="0" min="0" max="100"
+	       onChange="setYellow(value);">
+      </div>
+
+      <div data-role="fieldcontain">
+        <label for="greenled">Green LED</label>
+        <input id="greenled" type="range" name="slider" value="0" min="0" max="100"
+	       onChange="setGreen(value);">
+      </div>
+
+      <div data-role="fieldcontain">
+	<label for="buttonStatus">Button</label>
+	<select id="buttonStatus" name="switch" data-role="slider" value="on">
+	  <option value="off">Off</option>
+	  <option value="on">On</option>
+	</select>
+      </div>
+    </div>
+    <div data-role="footer" data-position="fixed">
+      <a href="https://github.com/fhunleth/pimasters-bbb-demo">github.com/fhunleth/pimasters-bbb-demo</a>
+    </div>
+  </div>
+</body>
+</html>
